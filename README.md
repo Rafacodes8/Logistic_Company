@@ -1,2 +1,2 @@
-# Logistic_Company
-Logistic_Company project for JavaSchool
+# Logistics_Company
+Logistics_Company project for JavaSchool
