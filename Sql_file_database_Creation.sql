@@ -1,59 +1,62 @@
+
 CREATE DATABASE Logistics_Company;
 
 use Logistics_Company;	
 
-CREATE TABLE Truck
+CREATE TABLE truck
 (
-Id_Number varchar(7) primary key not null,
-Capacity int not null,
-T_Status bool not null,
-City varchar (25)
+id int auto_increment primary key not null,
+capacity int not null,
+t_Status bool not null,
+city varchar (25)
 );
 
-CREATE TABLE Driver
+CREATE TABLE driver
 (
-Id_Driver int auto_increment primary key not null,
-Driver_Name varchar(45) not null,
-Surname varchar(45) not null,
-Personal_Number int(7) not null,
-Working_Hours_Month int not null,
-Driver_Status boolean not null,
-Current_City varchar(45),
-Current_Truck varchar(7)
+id int auto_increment primary key not null,
+driver_Name varchar(45) not null,
+surname varchar(45) not null,
+personal_Number int(7) not null,
+working_Hours_Month int not null,
+driver_Status boolean not null,
+current_City varchar(45) default null,
+current_Truck varchar(7) default null
 );
 
-CREATE TABLE Logistic_Order
+CREATE TABLE logistic_order
 (
-Id_Order int not null unique,
-Completed bool not null,
-Appointed_Truck varchar(7),
-Appointed_Driver int(7),
-PRIMARY KEY (Id_Order)
+id int auto_increment not null,
+completed bool not null,
+id_truck int not null unique,
+id_driver int not null unique,
+PRIMARY KEY(id),
+CONSTRAINT FOREIGN KEY(id_truck) REFERENCES truck(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT FOREIGN KEY(id_driver) REFERENCES driver(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE Waypoint_ListId_Order
+CREATE TABLE waypoint_list
 (
-Id_Waypoint int not null unique,
-City varchar(45) not null,
-Cargo varchar(45) not null,
-Action_Type varchar(6) not null,
-Id_Order int not null unique,
-PRIMARY KEY (Id_Waypoint),
-FOREIGN KEY(Id_Order) REFERENCES Logistic_Order(Id_Order)
+id int auto_increment not null unique,
+city varchar(45) not null,
+cargo varchar(45) not null,
+action_Type varchar(6) not null,
+id_order int not null unique,
+PRIMARY KEY(id),
+CONSTRAINT FOREIGN KEY(id_order) REFERENCES logistic_order(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE Cargo
+CREATE TABLE cargo
 (
-Id_cargo int auto_increment primary key not null,
-Unique_Number int not null,
-Cargo_Name varchar(45) not null,
-WeightKg int not null,
-Cargo_Status varchar(9)
+id int auto_increment primary key not null,
+unique_number int not null,
+cargo_name varchar(45) not null,
+weight_kg int not null,
+cargo_status varchar(9) default null
 );
 
-CREATE TABLE Country_Map
+CREATE TABLE country_map
 (
-Id_Country_Map int auto_increment primary key not null,
-City varchar(45) not null,
-Distance int not null
-);
+id int auto_increment primary key not null,
+city varchar(45) not null,
+distance int not null
+); 
