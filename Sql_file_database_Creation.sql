@@ -13,7 +13,8 @@ city_name varchar(45) not null
 CREATE TABLE truck
 (
 id int auto_increment primary key not null,
-capacity int not null,
+unique_number varchar(7),
+capacity_tons int not null,
 t_status bool not null,
 id_city int not null unique,
 CONSTRAINT FOREIGN KEY(id_city) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -28,9 +29,7 @@ personal_number int(7) not null,
 working_hours_month int not null,
 driver_status boolean not null,
 id_city int not null unique,
-id_truck int not null unique,
 PRIMARY KEY(id),
-CONSTRAINT FOREIGN KEY(id_truck) REFERENCES truck(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
 CONSTRAINT FOREIGN KEY(id_city) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
@@ -57,34 +56,35 @@ CREATE TABLE logistic_order
 (
 id int auto_increment not null,
 completed bool not null,
+order_name varchar(45) not null,
+id_city_from int not null unique,
+id_city_to int not null unique,
 id_truck int not null unique,
 id_driver int not null unique,
 PRIMARY KEY(id),
 CONSTRAINT FOREIGN KEY(id_truck) REFERENCES truck(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-CONSTRAINT FOREIGN KEY(id_driver) REFERENCES driver(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+CONSTRAINT FOREIGN KEY(id_driver) REFERENCES driver(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT FOREIGN KEY(id_city_from) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT FOREIGN KEY(id_city_to) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE waypoint_list
+CREATE TABLE cargo_order
 (
-id int auto_increment not null unique,
-cargo varchar(45) not null,
-action_type varchar(6) not null,
-id_order int not null unique,
-id_city int not null unique,
+id int auto_increment not null,
 id_cargo int not null unique,
+id_order int not null unique,
 PRIMARY KEY(id),
-CONSTRAINT FOREIGN KEY(id_order) REFERENCES logistic_order(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-CONSTRAINT FOREIGN KEY(id_city) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-CONSTRAINT FOREIGN KEY(id_cargo) REFERENCES cargo(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+CONSTRAINT FOREIGN KEY(id_cargo) REFERENCES cargo(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT FOREIGN KEY(id_order) REFERENCES logistic_order(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 
 CREATE TABLE country_map
 (
 id int auto_increment primary key not null,
-id_city_1 int not null unique,
-id_city_2 int not null unique,
+id_city_from int not null unique,
+id_city_to int not null unique,
 distance int not null,
-CONSTRAINT FOREIGN KEY(id_city_1) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
-CONSTRAINT FOREIGN KEY(id_city_2) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+CONSTRAINT FOREIGN KEY(id_city_from) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+CONSTRAINT FOREIGN KEY(id_city_to) REFERENCES city(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ); 
