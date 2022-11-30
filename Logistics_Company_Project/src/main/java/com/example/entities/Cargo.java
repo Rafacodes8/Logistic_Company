@@ -20,7 +20,7 @@ import lombok.ToString;
 public class Cargo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "unique_number",
             nullable = false)

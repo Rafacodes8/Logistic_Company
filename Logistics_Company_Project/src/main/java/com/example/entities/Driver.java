@@ -20,7 +20,7 @@ import lombok.ToString;
 public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "driver_name",
             nullable = false)
@@ -39,13 +39,15 @@ public class Driver {
     private boolean driverStatus;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "city_id",
+                nullable = false)
     private City city;
 
     @ManyToMany
     @JoinTable(
             name = "truck_driver",
-            joinColumns = @JoinColumn(name = "driver_id"),
+            joinColumns = @JoinColumn(name = "driver_id",
+                                      nullable = false),
             inverseJoinColumns = @JoinColumn(name = "truck_id")
     )
     Set<Truck> trucks;

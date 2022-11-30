@@ -2,14 +2,13 @@ package com.example.entities;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -19,18 +18,19 @@ import lombok.ToString;
 public class City {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(
-            name = "name",
-            nullable = false,
-            columnDefinition = "TEXT"
+            name = "city_name",
+            nullable = false
     )
     private String name;
+    
 
-    @OneToMany(mappedBy = "id")
-    private List<Truck> truckList;
+
+    @OneToMany(mappedBy = "city")
+    private Set<Truck> truckList;
     @OneToMany(mappedBy = "id")
     private List<Driver> driverList;
     @OneToMany(mappedBy = "id")

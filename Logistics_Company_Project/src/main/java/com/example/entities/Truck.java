@@ -1,16 +1,15 @@
 package com.example.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -20,11 +19,12 @@ import lombok.ToString;
 public class Truck {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "unique_number",
-            nullable = false)
-    private char[] uniqueNumber;
+            nullable = false,
+            length = 7)
+    private String uniqueNumber;
     @Column(name = "capacity_tons",
             nullable = false)
     private int capacityTons;
@@ -32,10 +32,11 @@ public class Truck {
             nullable = false)
     private boolean tStatus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private City city;
-
+    
     @ManyToMany(mappedBy = "trucks")
     Set<Driver> drivers;
 

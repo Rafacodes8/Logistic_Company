@@ -7,22 +7,32 @@ package com.example.controler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-
 
 /**
  *
  * @author rmoriana
  */
 @Controller
-public class DemoController {
+public class HelloWorldController {
     
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model){
-        model.addAttribute("name", name);
-        return "greetingtest";
+    @GetMapping("/hello")
+    public String hello(Model model){
+        model.addAttribute("message", "hello World");
+        return "helloworld";
+    }
+    
+    @GetMapping("/style")
+    public String style() {
+        return "add-css-js-demo";
+    }
+    
+    @GetMapping("/bootstrap")
+    public String bootstrap() {
+        return "add-bootstrap";
     }
 }
- 
+    
+    
+

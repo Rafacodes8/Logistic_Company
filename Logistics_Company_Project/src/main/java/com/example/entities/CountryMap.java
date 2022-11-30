@@ -18,18 +18,20 @@ import lombok.ToString;
 public class CountryMap {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "distance",
             nullable = false)
     private int distance;
 
     @ManyToOne
-    @JoinColumn(name = "city_from_id")
+    @JoinColumn(name = "city_from_id",
+                nullable = false)
     private City cityFrom;
 
     @ManyToOne
-    @JoinColumn(name = "city_to_id")
+    @JoinColumn(name = "city_to_id",
+                nullable = false)
     private City cityTo;
 
 }

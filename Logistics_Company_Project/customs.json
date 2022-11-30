@@ -1,0 +1,23 @@
+{
+    "elements": {},
+    "attributes": {
+        "th:text": {
+            "context": "h1"
+        },
+        "charset": {
+            "context": "meta"
+        },
+        "http:": {
+            "context": "html"
+        },
+        "name": {
+            "context": "meta"
+        },
+        "th:src": {
+            "context": "script"
+        },
+        "th:href": {
+            "context": "link"
+        }
+    }
+}

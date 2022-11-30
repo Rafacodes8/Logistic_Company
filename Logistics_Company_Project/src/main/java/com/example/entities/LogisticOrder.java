@@ -20,7 +20,7 @@ import lombok.ToString;
 public class LogisticOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(name = "completed",
@@ -32,25 +32,30 @@ public class LogisticOrder {
     private String orderName;
 
     @ManyToOne
-    @JoinColumn(name = "truck_id")
+    @JoinColumn(name = "truck_id",
+                nullable = false)
     private Truck truck;
 
     @ManyToOne
-    @JoinColumn(name = "driver_id")
+    @JoinColumn(name = "driver_id",
+                nullable = false)
     private Driver driver;
 
     @ManyToOne
-    @JoinColumn(name = "city_from_id")
+    @JoinColumn(name = "city_from_id",
+                nullable = false)
     private City cityFrom;
 
     @ManyToOne
-    @JoinColumn(name = "city_to_id")
+    @JoinColumn(name = "city_to_id",
+                nullable = false)
     private City cityTo;
 
     @ManyToMany
     @JoinTable(
             name = "cargo_order",
-            joinColumns = @JoinColumn(name = "order_id"),
+            joinColumns = @JoinColumn(name = "order_id",
+                                      nullable = false),
             inverseJoinColumns = @JoinColumn(name = "cargo_id")
     )
     Set<Cargo> cargos;
