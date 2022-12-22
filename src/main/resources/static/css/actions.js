@@ -1,3 +1,0 @@
-function funSiona() {
-    alert("funsiono!");
-}
