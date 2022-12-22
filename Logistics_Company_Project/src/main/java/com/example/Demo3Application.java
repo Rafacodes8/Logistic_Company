@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("com.example.controler")
+//@ComponentScan("com.example.controler")
 @SpringBootApplication
 public class Demo3Application{
     

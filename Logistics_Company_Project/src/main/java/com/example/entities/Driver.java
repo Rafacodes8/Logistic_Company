@@ -36,9 +36,9 @@ public class Driver {
     private int workingHoursMonth;
     @Column(name = "driver_status",
             nullable = false)
-    private boolean driverStatus;
+    private String driverStatus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id",
                 nullable = false)
     private City city;
@@ -50,9 +50,13 @@ public class Driver {
                                       nullable = false),
             inverseJoinColumns = @JoinColumn(name = "truck_id")
     )
-    Set<Truck> trucks;
+    List<Truck> trucks;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
     private List<LogisticOrder> orderList;
+    
+    public void addTruck(Truck truck){
+        this.trucks.add(truck);
+    }
 
 }

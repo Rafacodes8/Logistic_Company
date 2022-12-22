@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Data
@@ -32,14 +34,16 @@ public class Truck {
             nullable = false)
     private boolean tStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "city_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private City city;
     
     @ManyToMany(mappedBy = "trucks")
-    Set<Driver> drivers;
+    List<Driver> drivers;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "truck", cascade = CascadeType.ALL)
     private List<LogisticOrder> orderList;
+
+
 }

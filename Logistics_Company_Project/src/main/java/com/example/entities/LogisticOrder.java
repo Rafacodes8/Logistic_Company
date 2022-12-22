@@ -31,12 +31,12 @@ public class LogisticOrder {
             nullable = false)
     private String orderName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "truck_id",
                 nullable = false)
     private Truck truck;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "driver_id",
                 nullable = false)
     private Driver driver;
@@ -58,6 +58,6 @@ public class LogisticOrder {
                                       nullable = false),
             inverseJoinColumns = @JoinColumn(name = "cargo_id")
     )
-    Set<Cargo> cargos;
+    List<Cargo> cargos;
 
 }

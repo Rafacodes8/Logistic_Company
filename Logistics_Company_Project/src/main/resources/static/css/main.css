@@ -1,7 +1,9 @@
 h2{
-    font-family: sans-serif;
+    font:Montserrat;
     font-size: 1.5em;
-    text-transform: uppercase
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
 }
 
 strong{

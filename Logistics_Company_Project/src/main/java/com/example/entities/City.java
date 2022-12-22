@@ -23,7 +23,8 @@ public class City {
 
     @Column(
             name = "city_name",
-            nullable = false
+            nullable = false,
+            unique = true
     )
     private String name;
     
@@ -31,15 +32,22 @@ public class City {
 
     @OneToMany(mappedBy = "city")
     private Set<Truck> truckList;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "city")
     private List<Driver> driverList;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "cityFrom")
     private List<LogisticOrder> cityFromList;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "cityTo")
     private List<LogisticOrder> cityToList;
     @OneToMany(mappedBy = "id")
     private List<CountryMap> mapCityFromList;
     @OneToMany(mappedBy = "id")
     private List<CountryMap> mapCityToList;
+
+    public City(String name) {
+        this.name = name;
+    }
+    
+    
+    
 
 }

@@ -37,4 +37,11 @@ public class Cargo {
 
     @ManyToMany(mappedBy = "cargos")
     Set<LogisticOrder> orders;
+    
+    public Cargo(int uniqueNumber, String cargoName, int weightKg, boolean cargoStatus) {
+        this.uniqueNumber = uniqueNumber;
+        this.cargoName = cargoName;
+        this.weightKg = weightKg;
+        this.cargoStatus = cargoStatus;
+    }
 }
