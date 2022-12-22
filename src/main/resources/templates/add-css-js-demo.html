@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>add css and js to Thymeleaf</title>
+        <link th:href = "@{/css/main.css}" rel="stylesheet"></link>
+        <script th:src = "@{/css/actions.js}" ></script> 
+        <script  th:inline="javascript">
+            function greetWorld() {
+                alert("hello world");
+            }
+        </script>
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    </head>
+    <body>
+        
+        <h2>Heading</h2>
+        <p>
+            this is test on which we want to apply <strong> very special</strong> styling.
+        </p>
+        
+        <button th:onclick="greetWorld()">using no variable</button>
+        
+        <button th:onclick= "funSiona()">Show Alert</button>
+        
+        <div>TODO write content</div>
+    </body>
+</html>
+
+

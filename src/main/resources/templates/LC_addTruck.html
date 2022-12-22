@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Logistics_company</title>
+        <link th:href = "@{/css/main.css}" rel="stylesheet"></link>
+        <script th:src = "@{/css/actions.js}" ></script> 
+        <meta charset="UTF-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css"/>
+    </head>
+    <body>
+        <h1>Add Truck</h1>
+
+        <form action="#" th:action="@{/LogisticsCompany/employee/edittruck/addtruck}" th:object="${truck}" method="post">
+            <p>
+                Truck Number: <input type="text" th:field="*{uniqueNumber}"></input>
+            </p>
+            <p>
+                Capacity(Tons): <input type="text" th:field="*{capacityTons}"></input>
+            </p>
+            <p>
+                Status(OK/NOK): <input type="text" th:field="*{tStatus}"></input>
+            </p>
+              <br />
+                City:
+                <select name="city" >
+                    <option th:each="city: ${cities}" th:text="${city.name}" th:attr="value=${city.id}"/>
+                </select
+              ><br />
+              <br />
+                Driver:
+                <select name="drivers" >
+                    <option th:each="driver: ${drivers}" th:text="${driver.driverName}" th:attr="value=${driver.id}"/>
+                </select
+              ><br />
+            <p>
+                <input type="submit" value="Submit"/> <input type="reset" value="Reset"></input>
+            </p>
+        </form>
+        
+
+    </body>
+</html>
+
+
+
+					
